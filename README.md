@@ -71,7 +71,7 @@ NVIDIA drivers at [https://www.nvidia.com/en-us/drivers/unix/]().
 
 Or get in the container first and then run `glxgears`:
 
-    docker run --rm -ti -e DISPLAY=$DISPLAY --privileged glxgears-docker
+    docker run --rm -ti -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY  --privileged glxgears-docker
     (inside the docker container) glxgears
 
 `--privileged` enables `direct rendering` required for `glxgears`. Before forwarding the `DISPLAY` port like above, 
@@ -87,7 +87,7 @@ I was able to run `glxgears` on docker container and Linux host by mounting the 
 any NVIDIA or mesa drivers on the container:
 
 > docker run --rm -ti -v /tmp/.X11-unix:/tmp/.X11-unix -v /usr/lib64:/usr/hostLib64 -e DISPLAY=$DISPLAY 
--e LD_LIBRARY_PATH=/usr/hostLib64 -privileged glxgears-docker glxgears
+-e LD_LIBRARY_PATH=/usr/hostLib64 --privileged glxgears-docker glxgears
 
 
 ### Windows
@@ -112,7 +112,7 @@ Finally, save the configuration file:
 ![](screenshots/ShareDrive.PNG)
 
 
-3. Launch Windows PowerShell. I didn't require to launch PowerShell with `Run as administrator`.
+3. Launch Windows PowerShell. I DIDN'T require to launch PowerShell with `Run as administrator`.
  
 4. Obtain your IP address:
 
@@ -239,6 +239,9 @@ Running OpenGL apps on singularity container for a Linux/MAC host is easier than
 
     singularity shell --writable-tmpfs xclock-glxgears
     (inside the singularity shell) glxgears
+    
+You can also use `--nv` flag to export host NVIDIA libraries. In this case, you wouldn't need another `mesa-dri-drivers` 
+when you build the container.
 
 ### Windows
 
