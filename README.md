@@ -161,6 +161,7 @@ Or get in the container first and then run `glxgears`:
 
 3. Upon closing `fsleyes`:
 
+```
     (fsleyes:203): Gdk-ERROR **: 16:01:14.549: The program 'fsleyes' received an X Window System error.
     This probably reflects a bug in the program.
     The error was 'GLXBadCurrentWindow'.
@@ -171,7 +172,7 @@ Or get in the container first and then run `glxgears`:
        option to change this behavior. You can then get a meaningful
        backtrace from your debugger if you break on the gdk_x_error() function.)
     /root/fsl-5.0.11-centos7/bin/fsleyes: line 6:   202 Trace/breakpoint trap   ${FSLDIR}/bin/FSLeyes/fsleyes $@
-
+```
 
 This issue didn't affect anything I know of, so I labeled this as *Won't Fix*.
 
@@ -266,6 +267,7 @@ See important steps below (there should be other steps in between):
 
 
 3. Start the virtual machine, provide the ISO you downloaded.
+
 ![](screenshots/point-to-centos7-iso.PNG)
 
 
