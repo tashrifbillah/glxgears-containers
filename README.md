@@ -192,7 +192,7 @@ with my host machine. Again, See the full list of NVIDIA drivers at [https://www
 
 Singularity containers i.e. "sylabs/singularity-3.3-centos-7-64" don't come with GUI enabled. You may forward X11 from 
 windows host by means of an X server. This approach worked fine for lightweight apps like `xclock` and `xeyes` but 
-wasn't able to run OpenGL hungry apps like glx-gears. So, the most manageable way of running OpenGL apps on 
+wasn't able to run OpenGL hungry apps like glxgears. So, the most manageable way of running OpenGL apps on 
 Singularity containers should be through a GUI desktop.
  
 
@@ -234,15 +234,17 @@ Running OpenGL apps on singularity container for a Linux/MAC host is easier than
 
 #### Pull the image
     
-    singularity pull library://tbillah/collection/xclock-glxgears
+    singularity pull xlock-glxgears library://tbillah/collection/xclock-glxgears
     
 #### Run the image
 
     singularity shell --writable-tmpfs xclock-glxgears
     (inside the singularity shell) glxgears
     
-You can also use `--nv` flag to export host NVIDIA libraries. In this case, you wouldn't need another `mesa-dri-drivers` 
-when you build the container.
+If you have NVIDIA driver in your host machine, you can also use `--nv` flag to export host NVIDIA libraries. 
+In this case, you wouldn't need another `mesa-dri-drivers` when you build the container.
+
+Not using `--nv` flag may result in [Singularity known issues #2](#singularity-known-issues)
 
 ### Windows
 
@@ -367,7 +369,7 @@ It may be useful to reboot at this point (from the host terminal):
 
 Finally, open a terminal on GUI desktop and pull the image:
    
-    singularity pull library://tbillah/collection/xclock-glxgears
+    singularity pull xclock-glxgears library://tbillah/collection/xclock-glxgears
     
 #### Run the image
 
@@ -384,12 +386,26 @@ Finally, open a terminal on GUI desktop and pull the image:
 
 1. https://github.com/sylabs/singularity/issues/4290
 
- 
+2. Upon running `xclock-glxgears`, you may get the following error:
+
+
+    libGL: screen 0 does not appear to be DRI2 capable
+    libGL: OpenDriver: trying /usr/lib64/dri/tls/swrast_dri.so
+    libGL: OpenDriver: trying /usr/lib64/dri/swrast_dri.so
+    libGL: Can't open configuration file /root/.drirc: No such file or directory
+    libGL: Can't open configuration file /root/.drirc: No such file or directory
+    
+
+If you have matching libraries across host and image accompanied by X configuration, this error might go away. 
+One solution is to have NVIDIA driver on the host and use `--nv` flag while running singularity image. 
+However, I labeled this issue as *Won't Fix*. 
+    
+    
 # Useful tips
 
 ## 1. Enable/Disable Hyper-V
 
-*Docker Desktop* requires Hyper-V enabled with *Oracle/Vagrant VirtualBox* requires it disabled.
+*Docker Desktop* requires Hyper-V enabled while *Oracle/Vagrant VirtualBox* requires it disabled.
 Follow Microsoft documentation to do the required:
 [https://support.microsoft.com/en-us/help/3204980/virtualization-applications-do-not-work-together-with-hyper-v-device-g]()
 
