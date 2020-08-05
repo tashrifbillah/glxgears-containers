@@ -296,14 +296,12 @@ Now *Start* your virtual machine again.
 
 6. After successful installation of CentOS7, open a terminal on GUI desktop, switch to root, 
 and install the following:
-    
-    
-    sudo su -
-    yum -y install epel-release
-    yum -y install singularity
-    exit
 
-    
+	    sudo su -
+	    yum -y install epel-release
+	    yum -y install singularity
+	    exit
+
 
 #### From standard CentOS7 box
 
