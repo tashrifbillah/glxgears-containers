@@ -161,7 +161,7 @@ Or get in the container first and then run `glxgears`:
 
 3. Upon closing `fsleyes`:
 
-```
+```vim
     (fsleyes:203): Gdk-ERROR **: 16:01:14.549: The program 'fsleyes' received an X Window System error.
     This probably reflects a bug in the program.
     The error was 'GLXBadCurrentWindow'.
@@ -211,9 +211,8 @@ Singularity containers should be through a GUI desktop.
     
 3. Login to Singularity cloud:
 
-
-    singularity remote login SylabsCloud
-        
+		singularity remote login SylabsCloud
+    
 When asked, just paste the access token. After login is complete, you should be able to push your images to Singularity Cloud:
     
     singularity push tuna-image library://tbillah/collection/tuna-image:0.0.0
@@ -316,8 +315,8 @@ This section is put here for learning purpose:
 3. Launch *Windows PowerShell* and do the following:
 
 
-    mkdir gui-container
-    New-Item Vagrantfile
+		mkdir gui-container
+		New-Item Vagrantfile
 
 
 Save the following configuration in the *Vagrantfile*
@@ -389,11 +388,11 @@ Finally, open a terminal on GUI desktop and pull the image:
 2. Upon running `xclock-glxgears`, you may get the following error:
 
 
-    libGL: screen 0 does not appear to be DRI2 capable
-    libGL: OpenDriver: trying /usr/lib64/dri/tls/swrast_dri.so
-    libGL: OpenDriver: trying /usr/lib64/dri/swrast_dri.so
-    libGL: Can't open configuration file /root/.drirc: No such file or directory
-    libGL: Can't open configuration file /root/.drirc: No such file or directory
+		libGL: screen 0 does not appear to be DRI2 capable
+		libGL: OpenDriver: trying /usr/lib64/dri/tls/swrast_dri.so
+		libGL: OpenDriver: trying /usr/lib64/dri/swrast_dri.so
+		libGL: Can't open configuration file /root/.drirc: No such file or directory
+		libGL: Can't open configuration file /root/.drirc: No such file or directory
     
 
 If you have matching libraries across host and image accompanied by X configuration, this error might go away. 
