@@ -181,7 +181,7 @@ provide libraries required to run `glxgears` or `fsleyes`. Hence, commands like 
 
 > nvidia-smi
 
-`NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.`
+> NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.
 
 However, I was able to eliminate this error by installing a version of NVIDIA driver on docker container that matches 
 with my host machine. Again, See the full list of NVIDIA drivers at [https://www.nvidia.com/en-us/drivers/unix/](). 
@@ -335,8 +335,8 @@ Save the following configuration in the *Vagrantfile*
 *Vagrantfile*:
     
     
-    vagrant up
-    vagrant ssh
+	    vagrant up
+	    vagrant ssh
 
 
 Once in the Virtual Machine, open a terminal, switch to root, and install the following:
@@ -440,6 +440,7 @@ Add the display parameters for root user:
 Test display for root user now:
 
 > xeyes
+
 > glxgears
 
 
